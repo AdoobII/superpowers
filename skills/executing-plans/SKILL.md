@@ -75,7 +75,7 @@ digraph process {
         "Work the steps in order: TDD, run every verification, read every output" [shape=box];
         "Step output matches plan's Expected?" [shape=diamond];
         "Plan wrong? Rule and ledger. Code wrong? systematic-debugging" [shape=box];
-        "Commit as the plan's commit steps say" [shape=box];
+        "Commit through the commit gate, as the plan's commit steps say" [shape=box];
         "Completion contract met?" [shape=diamond];
         "task-done: run tests, ledger the result; mark todo complete" [shape=box];
     }
@@ -92,8 +92,8 @@ digraph process {
     "Work the steps in order: TDD, run every verification, read every output" -> "Step output matches plan's Expected?";
     "Step output matches plan's Expected?" -> "Plan wrong? Rule and ledger. Code wrong? systematic-debugging" [label="no"];
     "Plan wrong? Rule and ledger. Code wrong? systematic-debugging" -> "Work the steps in order: TDD, run every verification, read every output";
-    "Step output matches plan's Expected?" -> "Commit as the plan's commit steps say" [label="yes, last step"];
-    "Commit as the plan's commit steps say" -> "Completion contract met?";
+    "Step output matches plan's Expected?" -> "Commit through the commit gate, as the plan's commit steps say" [label="yes, last step"];
+    "Commit through the commit gate, as the plan's commit steps say" -> "Completion contract met?";
     "Completion contract met?" -> "Work the steps in order: TDD, run every verification, read every output" [label="no - finish the task"];
     "Completion contract met?" -> "task-done: run tests, ledger the result; mark todo complete" [label="yes"];
     "task-done: run tests, ledger the result; mark todo complete" -> "More tasks remain?";
@@ -203,7 +203,8 @@ read its output, and compare. Three outcomes:
   continue. The ruling is carried, not remembered: later tasks that touch
   the same interface read it from the ledger.
 
-Commit as the plan's commit steps say. A task that spans several commits
+Commit as the plan's commit steps say, through the
+[commit gate](../using-superpowers/references/commit-gate.md). A task that spans several commits
 is fine; BASE is what the review range is cut from, never `HEAD~1`.
 
 ### 3. The completion contract

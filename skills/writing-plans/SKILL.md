@@ -131,10 +131,8 @@ Expected: PASS
 
 - [ ] **Step 5: Commit**
 
-```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
-```
+Commit through the [commit gate](../using-superpowers/references/commit-gate.md).
+Files: `tests/path/test.py`, `src/path/file.py`
 ````
 
 ## What a Step Contains

@@ -35,7 +35,9 @@ own problem — fresh eyes and a capability bump in one move.
 
 **Every round, either way:** the implementer fixes, re-runs the tests
 covering the amended code, appends its fix report to the same report file,
-and returns the short contract. Before re-dispatching the reviewer, confirm
+and returns the short contract. The fix stays uncommitted: commit it through the
+[commit gate](../../using-superpowers/references/commit-gate.md), then run the
+review package. Before re-dispatching the reviewer, confirm
 the fix report contains the covering tests, the command run, and the
 output; dispatch the re-review once all three are present. Name the
 covering test files in the fix message — a one-line fix does not need the

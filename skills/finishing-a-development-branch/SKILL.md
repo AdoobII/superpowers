@@ -188,7 +188,7 @@ Worktree removal refused — these files were never committed:
 
 <file list>
 
-1. Commit them to <branch> before cleanup
+1. Commit them to <branch> before cleanup (through the commit gate)
 2. Move them into <main repo root>
 3. Delete them (unrecoverable)
 
