@@ -89,6 +89,8 @@ Pi's built-in coding tools are lowercase: \`read\`, \`write\`, \`edit\`, \`bash\
 
 Pi does not ship a standard subagent tool. If a subagent tool such as \`subagent\` from \`pi-subagents\` is available, use it for Superpowers subagent workflows. If no subagent tool is available, do the work in this session or explain the missing capability instead of inventing \`Task\` calls.
 
+Commits go through the commit gate: run the \`review-comments\` skill, then the \`commit-all\` skill, which uses the \`comment-reviewer\` and \`commit-organizer\` subagents. Never run \`git commit\` directly. If the \`subagent\` tool is missing, follow those two skills inline.
+
 Pi does not ship a standard task-list tool. If an installed todo/task tool is available, use it. Otherwise track work in plan files or a repo-local \`TODO.md\` when task tracking is needed. Treat older \`TodoWrite\` references as this task-tracking action.`;
 }
 

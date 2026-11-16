@@ -11,6 +11,10 @@ Skills speak in actions ("dispatch a subagent", "create a todo", "read a file").
 
 Pi core does not ship a standard subagent tool. The `pi-subagents` package is a strong optional companion and provides a `subagent` tool with single-agent, chain, parallel, async, forked-context, and resume/status workflows. If no subagent tool is available, do not fabricate `Task` calls; execute sequentially in the current session or explain that the optional subagent capability is not installed.
 
+## Commits
+
+Commits go through the commit gate (`references/commit-gate.md`): the `review-comments` skill, then the `commit-all` skill. Their agents, `comment-reviewer` and `commit-organizer`, live in this package's `agents/` directory.
+
 ## Task lists
 
 Pi core does not ship a standard task-list tool. If a todo/task extension is installed, use its documented tool. Otherwise use Superpowers plan files, checklists in Markdown, or a repo-local `TODO.md` for task tracking. Older Superpowers docs may refer to `TodoWrite`; treat that as the task-tracking action above.
