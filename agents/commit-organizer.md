@@ -26,7 +26,7 @@ Commits are authored and committed by the local git identity, resolved at run ti
 
 0. Resolve the identity as described above. Stop if it is missing.
 1. Run `git status --porcelain`, `git diff HEAD --stat` and `git log -15 --format=%s`. Match the repository's existing message style (capitalisation, trailing period, prefixes).
-2. Read the diff of every changed file and look at every untracked file before deciding anything.
+2. Read the diff of every changed file and look at every untracked file before deciding anything. Write each message for a stranger who has never seen the plan, the tasks or the conversation, using the Messages rules below.
 3. Decide what stays out. Leave unstaged and report: secrets, tokens, `.env` files, build output, caches, large binaries, and local-only edits such as `"version": "local"`, debug paths or machine-specific settings. If the caller named files to leave out, leave them out. If an untracked file is ambiguous, leave it out and report it. You cannot ask questions, so never wait for an answer.
 4. Group the rest into logical commits: one coherent change each (a feature, a fix, a refactor, docs, config). Tests go with the code they cover. Documentation goes with the feature it describes, or in its own commit if it stands alone. Order commits so dependencies come first and each commit leaves the tree sensible. Do not make one commit per file by default and do not lump unrelated work together.
 5. Stage whole files with `git add -- <paths>`. Split a file's hunks across commits only when it mixes unrelated changes: build a patch from `git diff -U0 -- <file>` limited to the wanted hunks and apply it with `git apply --cached --recount`. Check `git diff --cached --stat` before every commit, and make sure nothing unintended is staged.
@@ -37,11 +37,14 @@ Commits are authored and committed by the local git identity, resolved at run ti
 
 - One imperative sentence that says what the change does, in sentence case, ending with a period. A second sentence only if the reason is not obvious. Never more than three sentences, and prefer one.
 - Describe the change itself. Never mention plans, tasks, tickets, review or step numbers or letters, sessions, runs, dates, or what an earlier fix attempt was.
+- **Never refer to the project's plan, spec or design documents, their sections or rulings, or the process that produced the change.** Any wording that points at the work process instead of the code is banned. Examples: "per the plan", "plan section 7", "ruling R-J", "step 3", "Task 4", "review finding", "workstream B", "the remaining checks", "first part", "follow-up" and "rest of". The one exception is a commit whose diff changes such a document: then its file name may be the subject ("Record the rig run in the architecture plan."), and the message still describes the content, not the process. A commit that edits comments says what the comments no longer contain ("Remove section references from comments in the frame engine."), and does not say why the comments were edited or which review asked for it.
+- Name what the code does after the commit, not where it sits in a sequence of work. "Add the remaining invariant checks" and "Fix the second review round" fail; "Add the keep-alive, staging and exposure-lock checks to the frame engine" passes.
 - Never use the em dash or the en dash. No emoji, no bullet lists, no body paragraphs.
 - Follow the repository's conventions when it has them, for example a prefix, as long as these rules still hold.
 - Write in plain language. Use everyday words ("use" not "utilize", "so" not "in order to", "start" not "initiate"), concrete active verbs, and no filler such as "basically", "simply" or "various improvements". Keep file names, identifiers and technical terms exactly as written.
 - Say what the change does. "Move the shared capture steps into CaptureHelpers.lua." is good. "Refactor capture sequence to leverage the new helper module" is not. "Update stuff", "misc fixes" and "address feedback" are never acceptable.
 - Output only the message. No labels, preamble or commentary in it.
+- Before each `git commit`, re-read the message against the banned list above. If it points at the plan, a ruling, a task, a step, a review, a workstream or any other part of the process, or at a position in a sequence of work ("remaining", "rest of", "follow-up", "next"), rewrite it first.
 
 # Report
 
